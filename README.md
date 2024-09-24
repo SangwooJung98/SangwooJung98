@@ -9,5 +9,38 @@
 
 ##
 
+**Skills**
+
+<div align="left">
+  <img src="https://img.shields.io/badge/C-A8B9CC?style=flat&logo=C&logoColor=white" />
+  <img src="https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white" />
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=Python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Matlab-3776AB?style=flat&logo=Matlab&logoColor=white" />
+  <img src="https://img.shields.io/badge/ROS-22314E?style=flat&logo=ROS&logoColor=white" />
+  <img src="https://img.shields.io/badge/Pytorch-EE4C2C?style=flat&logo=Pytorch&logoColor=white" />
+  <img src="https://img.shields.io/badge/-LaTeX-008080?style=flat&logo=latex&logoColor=white">
+  <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat-square&logo=Visual%20Studio%20Code&logoColor=white">
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=white" />
+</div>
+
+##
+
+**Field of Interest**
+
+<div align="left">
+	<img src="https://img.shields.io/badge/-Radar,%20LiDAR%20SLAM-red" />
+  <img src="https://img.shields.io/badge/-Legged%20Robot-orange"/>
+  <img src="https://img.shields.io/badge/-Sensor%20Fusion-yellow"/>
+  <img src="https://img.shields.io/badge/-Deep%20Learning-green"/>
+</div>
+
+##
+
+**Contact me**
+
+<div align=left> <a href="mailto:dan0130@snu.ac.kr"><img src="https://img.shields.io/badge/Email-0072EF?style=flat&logo=Gmail&logoColor=white&link=mailto:dan0130@snu.ac.kr"/></a>
+
+##
+
 | <a><img align="center" src="https://github-readme-stats-sangwoo-jungs-projects.vercel.app/api?username=SangwooJung98&show_icons=true&theme=swift&include_all_commits=true&hide_border=true" alt="Sangwoo's github stats" /></a> | <a><img align="center" src="https://github-readme-stats-sangwoo-jungs-projects.vercel.app/api/top-langs/?username=SangwooJung98&layout=compact&hide_border=true" alt="Sangwoo's github stats" /></a>
 | ------------- | ------------- |
