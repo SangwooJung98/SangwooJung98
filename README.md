@@ -1,13 +1,9 @@
-![header](https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=300&section=header&text=Good%20to%20see%20you%20%F0%9F%A4%97)
-
-##
+![header](https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=200&section=header&text=Good%20to%20see%20you%20%F0%9F%A4%97)
 
 **Ph.D. Candidate @ [RPM Robotics Lab](https://rpm.snu.ac.kr/) at [SNU](https://www.snu.ac.kr/)**
 
 - I'm a Ph. D. candidate in [RPM Robotics Lab](https://rpm.snu.ac.kr/) at [Seoul National University(SNU)](https://www.snu.ac.kr/), being advised by [Prof. Ayoung Kim](https://ayoungk.github.io/). 
 - Please visit my **[Personal Homepage](https://sangwoojung98.github.io/)** for more information about me. 
-
-##
 
 **Skills**
 
@@ -22,23 +18,6 @@
   <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat-square&logo=Visual%20Studio%20Code&logoColor=white">
   <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=white" />
 </div>
-
-##
-
-**Field of Interest**
-
-<div align="left">
-	<img src="https://img.shields.io/badge/-Radar,%20LiDAR%20SLAM-red" />
-  <img src="https://img.shields.io/badge/-Legged%20Robot-orange"/>
-  <img src="https://img.shields.io/badge/-Sensor%20Fusion-yellow"/>
-  <img src="https://img.shields.io/badge/-Deep%20Learning-green"/>
-</div>
-
-##
-
-**Contact me**
-
-<div align=left> <a href="mailto:dan0130@snu.ac.kr"><img src="https://img.shields.io/badge/Email-0072EF?style=flat&logo=Gmail&logoColor=white&link=mailto:dan0130@snu.ac.kr"/></a>
 
 ##
 
