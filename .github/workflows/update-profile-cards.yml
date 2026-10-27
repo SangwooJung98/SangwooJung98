@@ -1,0 +1,97 @@
+name: Update profile cards
+
+on:
+  schedule:
+    # Daily at 09:17 Asia/Seoul (UTC+9).
+    - cron: "17 0 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/update-profile-cards.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: profile-cards
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - name: Check out profile repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+
+      - name: Generate activity card
+        uses: stats-organization/github-readme-stats-action@2c498845f71017821efaad14293ebc736156ef21 # v2
+        with:
+          card: stats
+          options: username=SangwooJung98&show_icons=true&theme=swift&include_all_commits=true&hide_border=true&card_width=467
+          path: ${{ runner.temp }}/profile-cards/stats.svg
+          token: ${{ github.token }}
+          core_version: "2.2.0"
+          fail_on_error: "true"
+
+      - name: Generate languages card
+        uses: stats-organization/github-readme-stats-action@2c498845f71017821efaad14293ebc736156ef21 # v2
+        with:
+          card: top-langs
+          options: username=SangwooJung98&layout=compact&hide_border=true&langs_count=6&card_width=300
+          path: ${{ runner.temp }}/profile-cards/top-langs.svg
+          token: ${{ github.token }}
+          core_version: "2.2.0"
+          fail_on_error: "true"
+
+      - name: Validate both cards before replacing either image
+        env:
+          CARDS_DIR: ${{ runner.temp }}/profile-cards
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          cards = {
+              "stats.svg": ("GitHub Stats", "Total Stars Earned:", "Total Commits:", "Total PRs:", "Total Issues:"),
+              "top-langs.svg": ("Most Used Languages", "%"),
+          }
+          for filename, required in cards.items():
+              source = Path(os.environ["CARDS_DIR"]) / filename
+              root = ET.parse(source).getroot()
+              if root.tag != "{http://www.w3.org/2000/svg}svg":
+                  raise ValueError(f"{filename}: expected an SVG image")
+              text = " ".join(
+                  "".join(element.itertext()).strip()
+                  for element in root.iter()
+                  if element.tag.rsplit("}", 1)[-1] in {"title", "desc", "text"}
+              )
+              if "Something went wrong" in text or any(label not in text for label in required):
+                  raise ValueError(f"{filename}: incomplete or error card")
+              print(f"Validated {filename}")
+          PY
+
+      # Default success() gating is intentional: any earlier failure skips this
+      # step, so the last successful pair remains in the repository.
+      - name: Publish both validated cards together
+        env:
+          CARDS_DIR: ${{ runner.temp }}/profile-cards
+        run: |
+          mkdir -p profile
+          cp "$CARDS_DIR/stats.svg" profile/stats.svg
+          cp "$CARDS_DIR/top-langs.svg" profile/top-langs.svg
+          git add -- profile/stats.svg profile/top-langs.svg
+          if git diff --cached --quiet; then
+            echo "Profile cards are unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update profile cards"
+          git push origin HEAD:main
