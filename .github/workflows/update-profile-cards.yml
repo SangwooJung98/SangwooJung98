@@ -2,8 +2,8 @@ name: Update profile cards
 
 on:
   schedule:
-    # Daily at 09:17 Asia/Seoul (UTC+9).
-    - cron: "17 0 * * *"
+    # Daily at 08:00 Asia/Seoul (23:00 UTC on the previous day).
+    - cron: "0 23 * * *"
   workflow_dispatch:
   push:
     branches: [main]
