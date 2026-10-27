@@ -29,25 +29,28 @@ jobs:
         with:
           ref: main
 
-      - name: Generate activity card
-        uses: stats-organization/github-readme-stats-action@2c498845f71017821efaad14293ebc736156ef21 # v2
-        with:
-          card: stats
-          options: username=SangwooJung98&show_icons=true&theme=swift&include_all_commits=true&hide_border=true&card_width=467
-          path: ${{ runner.temp }}/profile-cards/stats.svg
-          token: ${{ github.token }}
-          core_version: "2.2.0"
-          fail_on_error: "true"
+      # Keep the existing renderer, theme, and data scope. Only this scheduled
+      # job contacts Vercel; profile visitors load the committed SVG files.
+      - name: Fetch activity card
+        env:
+          CARDS_DIR: ${{ runner.temp }}/profile-cards
+          CARD_URL: https://github-readme-stats-sangwoo-jungs-projects.vercel.app/api?username=SangwooJung98&show_icons=true&theme=swift&include_all_commits=true&hide_border=true
+        run: |
+          mkdir -p "$CARDS_DIR"
+          curl --fail --show-error --silent --location \
+            --retry 3 --retry-all-errors --retry-delay 5 --retry-max-time 180 \
+            --connect-timeout 10 --max-time 45 \
+            --output "$CARDS_DIR/stats.svg" "$CARD_URL"
 
-      - name: Generate languages card
-        uses: stats-organization/github-readme-stats-action@2c498845f71017821efaad14293ebc736156ef21 # v2
-        with:
-          card: top-langs
-          options: username=SangwooJung98&layout=compact&hide_border=true&langs_count=6&card_width=300
-          path: ${{ runner.temp }}/profile-cards/top-langs.svg
-          token: ${{ github.token }}
-          core_version: "2.2.0"
-          fail_on_error: "true"
+      - name: Fetch languages card
+        env:
+          CARDS_DIR: ${{ runner.temp }}/profile-cards
+          CARD_URL: https://github-readme-stats-sangwoo-jungs-projects.vercel.app/api/top-langs/?username=SangwooJung98&layout=compact&hide_border=true
+        run: |
+          curl --fail --show-error --silent --location \
+            --retry 3 --retry-all-errors --retry-delay 5 --retry-max-time 180 \
+            --connect-timeout 10 --max-time 45 \
+            --output "$CARDS_DIR/top-langs.svg" "$CARD_URL"
 
       - name: Validate both cards before replacing either image
         env:
