@@ -29,12 +29,12 @@ jobs:
         with:
           ref: main
 
-      # Keep the existing renderer, theme, and data scope. Only this scheduled
-      # job contacts Vercel; profile visitors load the committed SVG files.
+      # Keep the existing renderer and theme; exclude historical menu-bot issues.
+      # Only this job contacts Vercel; visitors load the committed SVG files.
       - name: Fetch activity card
         env:
           CARDS_DIR: ${{ runner.temp }}/profile-cards
-          CARD_URL: https://github-readme-stats-sangwoo-jungs-projects.vercel.app/api?username=SangwooJung98&show_icons=true&theme=swift&include_all_commits=true&hide_border=true
+          CARD_URL: https://github-readme-stats-sangwoo-jungs-projects.vercel.app/api?username=SangwooJung98&show_icons=true&theme=swift&include_all_commits=true&hide_border=true&exclude_issue_repos=RPM-Robotics-Lab/SNU_menu_bot
         run: |
           mkdir -p "$CARDS_DIR"
           curl --fail --show-error --silent --location \
